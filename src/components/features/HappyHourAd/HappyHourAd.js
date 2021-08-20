@@ -4,6 +4,12 @@ import styles from './HappyHourAd.scss';
 
 class HappyHourAd extends React.Component{
 	
+	constructor(){
+	  super();
+	  
+	  setInterval(()=>this.forceUpdate(), 1000); //Wywołanie forceUpdate() spowoduje, że na komponencie zostanie wywołana metoda render()
+	}
+	
 	getCountdownTime(){
       const currentTime = new Date();
       const nextNoon = new Date(Date.UTC(currentTime.getUTCFullYear(), currentTime.getUTCMonth(), currentTime.getUTCDate(), 12, 0, 0, 0));
@@ -16,10 +22,12 @@ class HappyHourAd extends React.Component{
 }
 
 	render(){
+		const seconds = this.getCountdownTime();
+		const {title, description} = this.props; 
 		return (
-		  <div>
-	        <h3 className='title'>Title</h3>
-	        <div className='promoDescription'>{this.getCountdownTime()}</div>
+		  <div className={styles.component}>
+	        <h3 className={styles.title}>{title}</h3>
+	        <div className={styles.promoDescription}>{seconds > 23*60*60 ? description : seconds}</div>
           </div>
 		);
 	}
