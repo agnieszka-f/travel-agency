@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import styles from './TripSummary.module.scss';
 import {Col} from 'react-flexbox-grid';
+import {promoPrice} from '../../../utils/promoPrice.js';
+import {parseOptionPrice} from '../../../utils/parseOptionPrice';
+import {formatPrice} from '../../../utils/formatPrice.js';
 
 const TripSummary = ({id, image, name, cost, days, tags}) => (
   <Col xs={12} sm={6} lg={4} className={styles.column}>
@@ -12,7 +15,7 @@ const TripSummary = ({id, image, name, cost, days, tags}) => (
         <h3 className={styles.title}>{name}</h3>
         <div className={styles.details}>
           <span>{days} days</span>
-          <span>from {cost}</span>
+          <span>from {formatPrice(promoPrice(parseOptionPrice(cost).value))}</span>
         </div>
         <div className={styles.tags}>
            {

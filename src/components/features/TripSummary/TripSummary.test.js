@@ -22,9 +22,9 @@ describe('Component TripSummary ', () => {
   
   it('should render correct props: name, cost, days', () => {
 	const expectedTitle = 'ABCD';
-	const expectedCost = '1234';
+	const expectedCost = '$988';
 	const expectedDays = 5;
-    const component = shallow(<TripSummary  id={'abc'} image={'image.jpg'} name={'ABCD'} cost={'1234'} days={5} />);
+    const component = shallow(<TripSummary  id={'abc'} image={'image.jpg'} name={'ABCD'} cost={'$1234'} days={5} />);
     
 	expect(component.find('.title').text()).toEqual(expectedTitle);
 	expect(component.find('.details span').at(0).text()).toEqual(expectedDays + ' days');

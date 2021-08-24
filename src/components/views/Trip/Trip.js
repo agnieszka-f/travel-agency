@@ -16,8 +16,13 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 
 import OrderForm from '../../features/OrderForm/OrderFormContainer';
 
+import {promoPrice} from '../../../utils/promoPrice.js';
+import {parseOptionPrice} from '../../../utils/parseOptionPrice';
+import {formatPrice} from '../../../utils/formatPrice.js';
+
 const Trip = (props) => { 
   const {error, name, image, cost, days, description, country, intro, id} = props;
+  let promoCost = formatPrice(promoPrice(parseOptionPrice(cost).value));
   if(error) return <NotFound />;
   else return (
     <Section>
@@ -36,7 +41,7 @@ const Trip = (props) => {
               </div>
               <List variant='light'>
                 <ListItem title={`<strong>Duration:</strong> ${days} days`} icon='calendar-alt' />
-                <ListItem title={`<strong>Price:</strong> from ${cost}`} icon='money-bill-wave' />
+                <ListItem title={`<strong>Price:</strong> from ${promoCost}`} icon='money-bill-wave' />
               </List>
             </Col>
           </Row>
